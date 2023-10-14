@@ -6,8 +6,12 @@ Script that fills out forms on mojapg
 
 ## Usage
 
-Run the script with
+1. Run the script with
 
 ```
 python3 autoankiet.py
 ```
+
+2. Login to mojapg
+
+3. Wait for the script to fill out the forms
