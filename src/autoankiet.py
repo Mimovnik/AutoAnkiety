@@ -34,11 +34,12 @@ def fill_forms(driver):
     WebDriverWait(driver, wait_timeout).until(EC.visibility_of_element_located((By.XPATH, forms_table_xpath)))
     forms_table = driver.find_element(By.XPATH, forms_table_xpath)
     forms = forms_table.find_elements(By.TAG_NAME, 'tr')
-    for form in forms:
+    for i in range(len(forms)):
         WebDriverWait(driver, wait_timeout).until(EC.visibility_of_element_located((By.XPATH, forms_table_xpath)))
+        forms_table = driver.find_element(By.XPATH, forms_table_xpath)
+        form = forms_table.find_element(By.TAG_NAME, 'tr')
         form.click()
         fill_form(driver)
-        input()
 
 def fill_form(driver):
     click_radio_button(driver, attendance_major_td_xpath)
@@ -51,7 +52,7 @@ def fill_form(driver):
     click_radio_button(driver, contact_availability_whatever_td_xpath)
     click_radio_button(driver, social_behavior_whatever_td_xpath)
     click_submit(driver, submit_form_xpath, submit_input_class_name, submit_value)
-    # click_submit(driver, confirm_span_xpath, confirm_input_class_name, confirm_value)
+    click_submit(driver, confirm_span_xpath, confirm_input_class_name, confirm_value)
 
 
 def click_radio_button(driver, xpath):
