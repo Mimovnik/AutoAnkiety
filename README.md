@@ -4,6 +4,16 @@
 
 Script that fills out forms on mojapg
 
+## Dependencies
+
+- Selenium
+
+### Instalation
+
+```
+pip install selenium
+```
+
 ## Usage
 
 1. Run the script with
