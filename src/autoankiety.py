@@ -4,7 +4,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-fill_forms_link_xpath = '//*[@id="i1:j_id321:j_id351"]'
+student_info_div_xpath = '//*[@id="i1"]'
+first_link_tag_name = 'a'
+first_link_value='(Wypełnij...)'
 forms_table_xpath = '//*[@id="i1:edt_polls_tbl:tb"]'
 
 attendance_major_td_xpath = '//*[@id="i1:form_pollAnswer:questions_panel:0:pnl_anwsersLong"]/table/tbody/tr[1]/td'
@@ -74,6 +76,16 @@ def click_submit(driver, parent_xpath, input_class_name, value):
             WebDriverWait(driver, wait_timeout).until(EC.visibility_of(_class))
             _class.click()
             return
+
+def click_first_link(driver, student_info_div_xpath, first_link_tag_name, first_link_value):
+    parent = driver.find_element(By.XPATH, student_info_div_xpath)
+    classes = parent.find_elements(By.TAG_NAME, first_link_tag_name)
+
+    for _class in classes:
+        if(_class.get_attribute("value") == first_link_value):
+            WebDriverWait(driver, wait_timeout).until(EC.visibility_of(_class))
+            _class.click()
+            break
         
 ##############################
 
@@ -82,10 +94,14 @@ driver.maximize_window()
 url = "https://moja.pg.edu.pl/auth/app/student/"
 driver.get(url)
 
+
 try:
     WebDriverWait(driver, wait_timeout).until(EC.url_to_be(url))
 
-    click(driver, fill_forms_link_xpath)
+    WebDriverWait(driver, wait_timeout).until(EC.visibility_of_element_located((By.XPATH, student_info_div_xpath)))
+    # without this line element is stale
+    time.sleep(0.1)
+    click_first_link(driver, student_info_div_xpath, first_link_tag_name, first_link_value)
 
     fill_forms(driver)
 except TimeoutError:
