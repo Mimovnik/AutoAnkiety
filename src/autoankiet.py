@@ -51,6 +51,7 @@ def fill_form(driver):
     click_radio_button(driver, contact_availability_whatever_td_xpath)
     click_radio_button(driver, social_behavior_whatever_td_xpath)
     click_submit(driver, submit_form_xpath, submit_input_class_name, submit_value)
+    # click_submit(driver, confirm_span_xpath, confirm_input_class_name, confirm_value)
 
 
 def click_radio_button(driver, xpath):
@@ -76,6 +77,7 @@ def click_submit(driver, parent_xpath, input_class_name, value):
 ##############################
 
 driver = webdriver.Chrome()
+driver.maximize_window()
 url = "https://moja.pg.edu.pl/auth/app/student/"
 driver.get(url)
 
