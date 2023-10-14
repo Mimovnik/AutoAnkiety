@@ -7,12 +7,27 @@ Script that fills out forms on mojapg
 ## Dependencies
 
 - Selenium
+- Chromium driver
 
 ### Instalation
+
+#### Debian
+
+```
+apt install python3-selenium
+```
+
+```
+apt install chromium-driver
+```
+
+#### Other
 
 ```
 pip install selenium
 ```
+
+[Chromium Driver Download Page](https://chromedriver.chromium.org/downloads)
 
 ## Usage
 
